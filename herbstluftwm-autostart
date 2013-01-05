@@ -1,0 +1,152 @@
+#!/bin/bash
+
+# this is a simple config for herbstluftwm
+
+function hc() {
+    herbstclient "$@"
+}
+
+hc emit_hook reload
+
+xsetroot -solid '#5A8E3A'
+
+
+# remove all existing keybindings
+hc keyunbind --all
+
+# keybindings
+Mod=Mod4
+hc keybind $Mod-Shift-q quit
+hc keybind $Mod-Shift-r reload
+hc keybind $Mod-Shift-c close
+hc keybind $Mod-Return spawn urxvt
+hc keybind $Mod-q spawn dmenu_run
+
+#media keys
+hc keybind XF86AudioLowerVolume spawn amixer -q set PCM 1- unmute
+hc keybind XF86AudioRaiseVolume spawn amixer -q set PCM 1+ unmute
+hc keybind XF86AudioMute spawn amixer -q set PCM toggle
+hc keybind XF86AudioPrev spawn banshee --previous
+hc keybind XF86AudioNext spawn banshee --next  
+hc keybind XF86AudioPlay spawn banshee --toggle-playing
+hc keybind XF86AudioStop spawn banshee --stop
+hc keybind XF86Music spawn banshee
+hc keybind XF86Mail spawn firefox www.gmail.com
+hc keybind XF86Search spawn dmenu_run
+
+# tags
+TAG_NAMES=( 'terms' 'web' 'media' 'msn' 'reader' 'extra')
+TAG_KEYS=( {1..6} )
+
+hc rename default "${TAG_NAMES[0]}" || true
+for i in ${!TAG_NAMES[@]} ; do
+    hc add "${TAG_NAMES[$i]}"
+    key="${TAG_KEYS[$i]}"
+    if ! [ -z "$key" ] ; then
+        hc keybind "$Mod-$key" use "${TAG_NAMES[$i]}"
+        hc keybind "$Mod-Shift-$key" move "${TAG_NAMES[$i]}"
+    fi
+done
+
+# cycle through tags
+hc keybind $Mod-period use_index +1 --skip-visible
+hc keybind $Mod-comma  use_index -1 --skip-visible
+hc keybind $Mod-. use_index +1 --skip-visible
+hc keybind $Mod-,  use_index -1 --skip-visible
+
+# layouting
+hc keybind $Mod-r remove
+hc keybind $Mod-space cycle_layout 1
+hc keybind $Mod-u split vertical 0.5
+hc keybind $Mod-o split horizontal 0.5
+hc keybind $Mod-s floating toggle
+hc keybind $Mod-f fullscreen toggle
+hc keybind $Mod-p pseudotile toggle
+
+## resizing
+RESIZESTEP=0.05
+hc keybind $Mod-Control-Up resize up +$RESIZESTEP
+hc keybind $Mod-Control-Left resize left +$RESIZESTEP
+hc keybind $Mod-Control-Down resize down +$RESIZESTEP
+hc keybind $Mod-Control-Right resize right +$RESIZESTEP
+
+# mouse
+hc mouseunbind --all
+hc mousebind $Mod-Button1 move
+hc mousebind $Mod-Button2 resize
+hc mousebind $Mod-Button3 zoom
+
+# focus
+hc keybind $Mod-BackSpace   cycle_monitor
+hc keybind $Mod-Tab         cycle_all +1
+hc keybind $Mod-Shift-Tab   cycle_all -1
+hc keybind $Mod-c cycle
+hc keybind $Mod-Left focus left
+hc keybind $Mod-Down focus down
+hc keybind $Mod-Up focus up
+hc keybind $Mod-Right focus right
+hc keybind $Mod-i jumpto urgent
+hc keybind $Mod-Shift-h shift left
+hc keybind $Mod-Shift-j shift down
+hc keybind $Mod-Shift-k shift up
+hc keybind $Mod-Shift-l shift right
+
+# colors
+
+hc set frame_border_active_color '#005577'
+hc set frame_border_normal_color '#161616'
+hc set frame_bg_normal_color '#BD9768'
+hc set frame_bg_transparent 1
+
+
+hc set frame_bg_active_color '#BD8541'
+hc set frame_border_width 2
+hc set window_border_width 2
+hc set window_border_inner_width 2
+hc set window_border_normal_color '#72b4ff'
+hc set window_border_active_color '#FF5959'
+hc set always_show_frame 1
+hc set frame_gap 4
+# add overlapping window borders
+hc set window_gap -2
+hc set frame_padding 2
+hc set smart_window_surroundings 0
+hc set smart_frame_surroundings 1
+hc set mouse_recenter_gap 0
+
+
+#xsetroot -solid '#000000'
+nitrogen --restore
+
+# rules
+hc unrule -F
+hc rule class=urxvt tag=terms # move all xterms to tag 3
+hc rule class=Firefox tag=web
+hc rule class=banshee tag=media
+hc rule class=FBReader tag=reader
+hc rule class=Emesene tag=msn
+hc rule class=transmission tag=extra
+hc rule focus=off # normally do not focus new clients
+# give focus to most common terminals
+hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK)' manage=off
+
+# unlock, just to be sure
+hc unlock
+
+herbstclient set tree_style '╾│ ├└╼─┐'
+
+# do multi monitor setup here, e.g.:
+# hc set_monitors 1280x1024+0+0 1280x1024+1280+0
+# or simply:
+# hc detect_monitors
+
+# find the panel
+panel=~/.config/herbstluftwm/panel.sh
+[ -x "$panel" ] || panel=/home/everton/.panel.sh
+for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
+    # start it on each monitor
+    $panel $monitor &
+done
