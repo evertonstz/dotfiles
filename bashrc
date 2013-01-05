@@ -1,6 +1,16 @@
-setxkbmap -model abnt2 -layout br 
-POST_UP="iwconfig wlan0 rate 12M fixed"
+#
+# ~/.bashrc
+#
 
-PS1='\[\033[0;31m\]\u \[\033[1;36m\]\W\n\[\033[1;32m\] > \[\033[00m\]'
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-PATH=$PATH:/home/everton/scripts/
+alias ls='ls --color=auto'
+alias p="pacman-color"
+alias y="yaourt"
+
+# Put your fun stuff here.
+#PS1='\[\e[0;33m\] \w/\[\033[0m\] '
+setxkbmap -model abnt2 -layout br -variant ,abnt2
+
+PS1="\[\033[0;35m\][初音ミク]\[\033[34m\][\w]\[\033[0m\]"
