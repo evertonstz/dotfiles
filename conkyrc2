@@ -1,9 +1,0 @@
- background no
- out_to_console yes
- update_interval 1.0
- total_run_times 0
- use_spacer none
- exit
-
- TEXT
- ^fg(\#e785ff)^i(/home/everton/icons/note1.xbm)^fg(\#a9a6af) ${execi 15 conkyBanshee --datatype=AR}^fg(\#598691) - ^fg(\#a9a6af)${execi 15  conkyBanshee --datatype=TI}       ^fg(\#72ff8d)^i(/home/everton/icons/arch2.xbm) ^fg(\#72b4ff)ARCH^fg(\#a9a6af)Linux^fg(\#598691) ^r(2x10)^fg(\#72b4ff) ^i(/home/everton/icons/memory.xbm)^fg(\#a9a6af) ${memperc}% ^fg(\#598691)^r(2x10) ^fg(\#ff8d8d)^i(/home/everton/icons/mail.xbm)^fg(\#a9a6af) ${execpi 300 python /home/everton/icons/scripts/gmailcli}^fg(\#598691) ^r(2x10)^fg(\#ffb472) ^i(/home/everton/icons/rss.xbm)^fg(\#a9a6af) ${execpi 300 python2.7 /home/everton/icons/scripts/readercli}^fg(\#598691) -- ^fg(\#ff5792)^i(/home/everton/icons/heart2.xbm)^fg(\#a9a6af) ${time %a %b %d - %I:%M%P}
