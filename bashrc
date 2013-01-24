@@ -1,16 +1,1 @@
-#
-# ~/.bashrc
-#
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-alias ls='ls --color=auto'
-alias p="pacman-color"
-alias y="yaourt"
-
-# Put your fun stuff here.
-#PS1='\[\e[0;33m\] \w/\[\033[0m\] '
-setxkbmap -model abnt2 -layout br -variant ,abnt2
-
-PS1="\[\033[0;35m\][初音ミク]\[\033[34m\][\w]\[\033[0m\]"
+/home/everton/.bashrc
