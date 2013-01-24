@@ -1,3 +1,0 @@
-#!/bin/sh
-#file : ~/.bin/dzconky
-conky -c .conkyrc2 | dzen2 -x 500 -h 14  -bg '#161616' -ta r -sa r -fn '-*-terminus-*-r-normal-*-*-9-*-*-*-*-iso8859-*' -p -e ''
