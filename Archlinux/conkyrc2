@@ -1,1 +1,9 @@
-/home/everton/.conkyrc2
+ background no
+ out_to_console yes
+ update_interval 1.0
+ total_run_times 0
+ use_spacer none
+ exit
+
+ TEXT
+${if_running banshee} ${execi 8  } ${if_match "${execi 8  banshee --query-current-state}"=="current-state: playing"}^fg(\#72ff79)^i(/home/everton/icons/player_play1.xbm) ^fg(\#72b4ff)${execi 8  conkyBanshee --datatype=AR}^fg(\#72ff79) ^r(2x10) ^fg(\#a9a6af)${execi 8  conkyBanshee --datatype=TI -m 30}${endif}${if_match "${execi 8  banshee --query-current-state}"=="current-state: paused"}^fg(\#72ff79)^i(/home/everton/icons/player_pause1.xbm) ^fg(\#72b4ff)${execi 8  conkyBanshee --datatype=AR}^fg(\#72ff79) ^r(2x10) ^fg(\#a9a6af)${execi 8  conkyBanshee --datatype=TI -m 30}${endif}${if_match "${execi 8  banshee --query-current-state}"=="current-state: idle"}^fg(\#72ff79)^i(/home/everton/icons/player_stop1.xbm) ^fg(\#72b4ff)${execi 8  conkyBanshee --datatype=AR}^fg(\#72ff79) ^r(2x10) ^fg(\#a9a6af)${execi 8  conkyBanshee --datatype=TI -m 30}${endif}${else}^fg(\#72ff79)^i(/home/everton/icons/note1.xbm) ^fg(\#a9a6af)-no-running-${endif}                     ^fg(\#72ff8d)^i(/home/everton/icons/arch2.xbm) ^fg(\#72b4ff)ARCH^fg(\#a9a6af)Linux^fg(\#598691) ^r(2x10)^fg(\#72b4ff) ^i(/home/everton/icons/volume_on.xbm)^fg(\#a9a6af) ${execi 5 amixer get PCM | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "MM" } else { print $2}}' | head -n 1}% ^fg(\#598691)^r(2x10) ^fg(\#ff8d8d)^i(/home/everton/icons/mail.xbm)^fg(\#a9a6af) ${execpi 300 python /home/everton/icons/scripts/gmailcli}^fg(\#598691) ^r(2x10)^fg(\#ffb472) ^i(/home/everton/icons/rss.xbm)^fg(\#a9a6af) ${execpi 300 python2.7 /home/everton/icons/scripts/readercli}^fg(\#598691) -- ^fg(\#ff5792)^i(/home/everton/icons/heart2.xbm)^fg(\#a9a6af) ${time %a %b %d}^fg(\#72ff79) ^r(2x10) ^fg(\#72b4ff)${time %I:%M%P} ^fg(\#3E3E3E)^r(2x10)^r(2x10)

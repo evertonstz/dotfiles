@@ -1,0 +1,188 @@
+!==============================================================
+!
+! X R E S O U R C E S
+!
+! Global
+
+! fg and bg might be overwritten by an imported colorscheme
+*foreground: #BDBDBD
+*background: #383A3B
+*saveLines: 1024
+
+Xcursor.theme: ComixCursors-White-Small-Slim
+! Fix urxvt 256 colors
+ # include ".config/xresources/urxvt_fix"
+!==============================================================
+!
+! U R x v t
+!
+URxvt*font: xft:Terminus:pixelsize=11
+URxvt*boldFont: xft:Terminus Bold:pixelsize=11
+!URxvt*font: xft:Fixed:pixelsize=11
+!URxvt*boldFont: xft:Fixed:pixelsize=11
+
+URxvt*buffered: true
+
+URxvt*cursorBlink: false
+URxvt*cursorUnderline: false
+
+URxvt*geometry: 90x20
+URxvt*internalBorder: 3
+
+!URxvt*reverseVideo: true
+
+URxvt*depth: 24
+
+URxvt*dynamicColors: on
+URxvt*scrollBar: false
+URxvt*scrollBar_right: true
+URxvt*scrollstyle: plain
+URxvt*scrollColor: #2873a2
+URxvt*scrollWithBuffer: false
+URxvt*scrollTtyOutput: true
+
+URxvt*urgentOnBell: true
+!URxvt*visualBell: true
+
+URxvt*pointerBlank: true
+
+URxvt*termName: rxvt-256color
+
+! Tabs
+#URxvt.tabbed.tabbar-fg: 8
+#URxvt.tabbed.tabbar-bg: 0
+#URxvt.tabbed.tab-fg: 0
+#URxvt.tabbed.tab-bg: 4
+#URxvt*transparent: true
+URxvt*shading: 10 # 0 to 99 darkens, 101 to 200 lightens
+
+! Perls stuff
+URxvt.perl-lib: /usr/lib/urxvt/perl/
+#URxvt.perl-ext-common: default,tabbed
+#URxvt.perl-ext-common: default
+#URxvt.keysym.M-u: perl:url-select:select_next
+#URxvt.urlLauncher: /usr/bin/luakit
+URxvt.matcher.button: 1
+
+URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
+URxvt.url-select.launcher:  firefox
+URxvt.url-select.underline: true
+URxvt.keysym.Control-u:           perl:url-select:select_next
+URxvt.keysym.Control-Escape:      perl:keyboard-select:activate
+URxvt.keysym.Control-s:           perl:keyboard-select:search
+Urxvt.keysym.Control-v:		  perl:paste
+
+! ---------------------------------------------------------------------------
+! taurus colors {{{1
+! ---------------------------------------------------------------------------
+
+!black
+URxvt.color0: #262729
+URxvt.color8: #554444
+!red
+! URxvt.color1: #F92672 !Original
+URxvt.color1: #E74D33
+URxvt.color9: #F92672
+!green
+URxvt.color2: #A6E22E
+URxvt.color10: #B2E87D
+!yellow
+URxvt.color3: #FFC123
+URxvt.color11: #EDFF44
+!blue
+URxvt.color4: #66D9EF
+URxvt.color12: #66D9EF
+!magenta
+! URxvt.color5: #9E6FFE
+URxvt.color5: #DA679E
+URxvt.color13: #F115AC
+!cyan
+URxvt.color6: #5E7175
+URxvt.color14: #A3BABF
+!white
+URxvt.color7: #CCCCC6
+URxvt.color15: #F8F8F2
+
+
+!==============================================================
+!
+!uxter
+!
+uxterm*font: xft:Terminus:pixelsize=11
+uxterm*boldFont: xft:Terminus:pixelsize=11
+!uxterm*font: xft:Fixed:pixelsize=11
+!uxterm*boldFont: xft:Fixed:pixelsize=11
+
+uxterm*buffered: true
+
+uxterm*cursorBlink: false
+uxterm*cursorUnderline: false
+
+uxterm*geometry: 90x20
+uxterm*internalBorder: 3
+
+!uxterm*reverseVideo: true
+
+uxterm*depth: 24
+
+uxterm*dynamicColors: on
+uxterm*scrollBar: false
+uxterm*scrollBar_right: true
+uxterm*scrollstyle: plain
+uxterm*scrollColor: #2873a2
+uxterm*scrollWithBuffer: false
+uxterm*scrollTtyOutput: true
+
+uxterm*urgentOnBell: true
+!uxterm*visualBell: true
+
+uxterm*pointerBlank: true
+
+uxterm*termName: rxvt-256color
+
+! Tabs
+uxterm.tabbed.tabbar-fg: 8
+uxterm.tabbed.tabbar-bg: 0
+uxterm.tabbed.tab-fg: 0
+uxterm.tabbed.tab-bg: 4
+uxterm*transparent: true
+uxterm*shading: 10 # 0 to 99 darkens, 101 to 200 lightens
+
+! Perls stuff
+uxterm.perl-lib: /usr/lib/uxterm/perl/
+uxterm.perl-ext-common: default,tabbed
+uxterm.keysym.M-u: perl:url-select:select_next
+uxterm.urlLauncher: /usr/bin/luakit
+uxterm.matcher.button: 1
+
+
+! ---------------------------------------------------------------------------
+! taurus colors {{{1
+! ---------------------------------------------------------------------------
+
+!black
+uxterm.color0: #262729
+uxterm.color8: #554444
+!red
+! uxterm.color1: #F92672 !Original
+uxterm.color1: #E74D33
+uxterm.color9: #F92672
+!green
+uxterm.color2: #A6E22E
+uxterm.color10: #B2E87D
+!yellow
+uxterm.color3: #FFC123
+uxterm.color11: #EDFF44
+!blue
+uxterm.color4: #66D9EF
+uxterm.color12: #66D9EF
+!magenta
+! uxterm.color5: #9E6FFE
+uxterm.color5: #DA679E
+uxterm.color13: #F115AC
+!cyan
+uxterm.color6: #5E7175
+uxterm.color14: #A3BABF
+!white
+uxterm.color7: #CCCCC6
+uxterm.color15: #F8F8F2
